@@ -31,15 +31,11 @@ Turn any **YouTube video**, **web article**, **text file**, or **raw text** into
 
 ## Features & 6-Stage Pipeline
 
-```mermaid
-flowchart LR
-    S["Input: YouTube, URL, File, or Text"] -->|"1. source"| SRC["source.json"]
-    SRC -->|"2. script: Gemini SSE"| SCR["script.json"]
-    SCR -->|"3. check: Rules + Proofreader LLM"| CHK["script.json + check.md"]
-    CHK -->|"4. audio: edge-tts + ffmpeg"| MP3["slug.mp3 + cover.jpg + clips/"]
-    CHK -->|"5. anki: genanki"| APKG["slug.apkg"]
-    CHK -->|"6. readme"| MD["README_AND_TRANSCRIPT_*.md"]
-```
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="docs/pipeline-dark.svg">
+  <source media="(prefers-color-scheme: light)" srcset="docs/pipeline-light.svg">
+  <img alt="Hörbuch-Generator 6-Stage Pipeline: Input -> 1. source -> 2. script -> 3. check -> 4. audio / 5. anki / 6. readme" src="docs/pipeline-light.svg" width="840">
+</picture>
 
 1. **`source`** — Extracts full YouTube transcripts (`youtube-transcript-api`, falling back to `yt-dlp` subtitles) + video metadata via YouTube oEmbed, or cleans plain text from a webpage, local file, or direct text input.
 2. **`script`** — Calls the Gemini REST API via Server-Sent Events (`:streamGenerateContent?alt=sse`) to generate a coherent graded retelling aligned to CEFR grammar rules (`A1`–`B2`), chapter structure, and target duration (`--minutes`). If `--known` is provided, previously reviewed Anki words are woven in as context anchors and excluded from new vocabulary selection.

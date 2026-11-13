@@ -30,14 +30,11 @@ Bevor das Repository öffentlich auf GitHub gepusht wird, führen wir in der nä
 
 Ziel ist eine native, App-Store-taugliche iOS-App (**Arbeitstitel:** *LingoCast* / *Hörbuch Studio*), die ohne Python-Server direkt auf dem iPhone läuft.
 
-```mermaid
-flowchart LR
-    A["YouTube-App / Safari<br/>(iOS Share Sheet)"] --> B["SwiftUI App<br/>Transkript & Wortschatz"]
-    B --> C["LLM-Engine<br/>(Gemini Flash API /<br/>iOS 26 FoundationModels)"]
-    C --> D["Lokale Prüfung<br/>(Swift Port von check.py)"]
-    D --> E["Audio-Engine<br/>(AVSpeechSynthesizer /<br/>Cloud Neural TTS)"]
-    E --> F["Dynamischer 4-Phasen-Player<br/>+ Nativer .apkg Export"]
-```
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="docs/ios-architecture-dark.svg">
+  <source media="(prefers-color-scheme: light)" srcset="docs/ios-architecture-light.svg">
+  <img alt="iOS SwiftUI App Architecture: Share Sheet -> SwiftUI App -> LLM Engine -> Local Validation -> Audio Engine -> 4-Phase Player + .apkg Export" src="docs/ios-architecture-light.svg" width="840">
+</picture>
 
 ### Phase 1: Lokaler Mobile-Modus im Heimnetz (Sofort nutzbar – 0 Aufwand)
 Schon vor dem Bau der Swift-App kann `web.py` mit `--host 0.0.0.0` gestartet werden:

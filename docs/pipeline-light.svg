@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 840 300" width="840" height="300" role="img" aria-label="Hörbuch-Generator 6-Stage Pipeline">
+  <rect x="1" y="1" width="838" height="298" rx="12" fill="#f6f8fa" stroke="#d0d7de" stroke-width="1.2"/>
+  <rect x="24" y="26" width="162" height="82" rx="10" fill="#ffffff" stroke="#d0d7de" stroke-width="1.25"/>
+  <rect x="73.0" y="37" width="64.0" height="19" rx="9.5" fill="#eaeef2"/>
+  <text x="105.0" y="49.8" text-anchor="middle" font-family="ui-sans-serif, -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="700" fill="#424a53">INPUT</text>
+  <text x="105.0" y="74" text-anchor="middle" font-family="ui-sans-serif, -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="13.5" font-weight="700" fill="#1f2328">Raw Content</text>
+  <text x="105.0" y="91" text-anchor="middle" font-family="ui-sans-serif, -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="11" fill="#59636e">YouTube · URL · File · Text</text>
+  <rect x="234" y="26" width="162" height="82" rx="10" fill="#ffffff" stroke="#d0d7de" stroke-width="1.25"/>
+  <rect x="271.0" y="37" width="88.0" height="19" rx="9.5" fill="#ddf4ff"/>
+  <text x="315.0" y="49.8" text-anchor="middle" font-family="ui-sans-serif, -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="700" fill="#0969da">1 · source</text>
+  <text x="315.0" y="74" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="12.5" font-weight="700" fill="#1f2328">source.json</text>
+  <text x="315.0" y="91" text-anchor="middle" font-family="ui-sans-serif, -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="11" fill="#59636e">Transcript &amp; metadata</text>
+  <rect x="444" y="26" width="162" height="82" rx="10" fill="#ffffff" stroke="#d0d7de" stroke-width="1.25"/>
+  <rect x="481.0" y="37" width="88.0" height="19" rx="9.5" fill="#ddf4ff"/>
+  <text x="525.0" y="49.8" text-anchor="middle" font-family="ui-sans-serif, -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="700" fill="#0969da">2 · script</text>
+  <text x="525.0" y="74" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="12.5" font-weight="700" fill="#1f2328">script.json</text>
+  <text x="525.0" y="91" text-anchor="middle" font-family="ui-sans-serif, -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="11" fill="#59636e">Gemini SSE · CEFR A1–B2</text>
+  <rect x="654" y="26" width="162" height="82" rx="10" fill="#ffffff" stroke="#d0d7de" stroke-width="1.25"/>
+  <rect x="694.5" y="37" width="81.0" height="19" rx="9.5" fill="#ddf4ff"/>
+  <text x="735.0" y="49.8" text-anchor="middle" font-family="ui-sans-serif, -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="700" fill="#0969da">3 · check</text>
+  <text x="735.0" y="74" text-anchor="middle" font-family="ui-sans-serif, -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="13.5" font-weight="700" fill="#1f2328">Verified Script</text>
+  <text x="735.0" y="91" text-anchor="middle" font-family="ui-sans-serif, -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="11" fill="#59636e">Rules + Proofreader LLM</text>
+  <line x1="189" y1="67" x2="224" y2="67" stroke="#8c959f" stroke-width="1.75" stroke-linecap="round"/><polygon points="231,67 224,62.5 224,71.5" fill="#8c959f"/>
+  <line x1="399" y1="67" x2="434" y2="67" stroke="#8c959f" stroke-width="1.75" stroke-linecap="round"/><polygon points="441,67 434,62.5 434,71.5" fill="#8c959f"/>
+  <line x1="609" y1="67" x2="644" y2="67" stroke="#8c959f" stroke-width="1.75" stroke-linecap="round"/><polygon points="651,67 644,62.5 644,71.5" fill="#8c959f"/>
+  <path d="M 735 108 L 735 138 L 142 138 L 142 165" fill="none" stroke="#8c959f" stroke-width="1.75" stroke-linejoin="round" stroke-linecap="round"/>
+  <line x1="420" y1="138" x2="420" y2="165" stroke="#8c959f" stroke-width="1.75" stroke-linecap="round"/>
+  <line x1="698" y1="138" x2="698" y2="165" stroke="#8c959f" stroke-width="1.75" stroke-linecap="round"/>
+  <polygon points="142,172 137.5,165 146.5,165" fill="#8c959f"/>
+  <polygon points="420,172 415.5,165 424.5,165" fill="#8c959f"/>
+  <polygon points="698,172 693.5,165 702.5,165" fill="#8c959f"/>
+  <rect x="24" y="174" width="236" height="98" rx="10" fill="#f0f6ff" stroke="#54aeff" stroke-width="1.25"/>
+  <rect x="101.5" y="185" width="81.0" height="19" rx="9.5" fill="#dafbe1"/>
+  <text x="142.0" y="197.8" text-anchor="middle" font-family="ui-sans-serif, -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="700" fill="#116329">4 · audio</text>
+  <text x="142.0" y="222" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="12.5" font-weight="700" fill="#1f2328">&lt;slug&gt;.mp3</text>
+  <text x="142.0" y="239" text-anchor="middle" font-family="ui-sans-serif, -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="11" fill="#59636e">edge-tts + ffmpeg · cover.jpg</text>
+  <text x="142.0" y="255" text-anchor="middle" font-family="ui-sans-serif, -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.2" fill="#6e7781">4 phases + cached clips/</text>
+  <rect x="302" y="174" width="236" height="98" rx="10" fill="#f0f6ff" stroke="#54aeff" stroke-width="1.25"/>
+  <rect x="383.0" y="185" width="74.0" height="19" rx="9.5" fill="#dafbe1"/>
+  <text x="420.0" y="197.8" text-anchor="middle" font-family="ui-sans-serif, -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="700" fill="#116329">5 · anki</text>
+  <text x="420.0" y="222" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="12.5" font-weight="700" fill="#1f2328">&lt;slug&gt;.apkg</text>
+  <text x="420.0" y="239" text-anchor="middle" font-family="ui-sans-serif, -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="11" fill="#59636e">genanki flashcards</text>
+  <text x="420.0" y="255" text-anchor="middle" font-family="ui-sans-serif, -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.2" fill="#6e7781">2 directions + embedded audio</text>
+  <rect x="580" y="174" width="236" height="98" rx="10" fill="#f0f6ff" stroke="#54aeff" stroke-width="1.25"/>
+  <rect x="654.0" y="185" width="88.0" height="19" rx="9.5" fill="#dafbe1"/>
+  <text x="698.0" y="197.8" text-anchor="middle" font-family="ui-sans-serif, -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="700" fill="#116329">6 · readme</text>
+  <text x="698.0" y="222" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="12.5" font-weight="700" fill="#1f2328">README_AND_TRANSCRIPT</text>
+  <text x="698.0" y="239" text-anchor="middle" font-family="ui-sans-serif, -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="11" fill="#59636e">Bilingual study guide</text>
+  <text x="698.0" y="255" text-anchor="middle" font-family="ui-sans-serif, -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.2" fill="#6e7781">Timestamps · vocab · check.md</text>
+</svg>
