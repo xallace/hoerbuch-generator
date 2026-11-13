@@ -1,0 +1,33 @@
+# API keys, environment files & machine-specific overrides (never commit!)
+gemini_key.txt
+.env
+.env.*
+!.env.example
+*.key
+config.local.json
+
+# Generated audiobooks, audio clips, Anki decks, published exports & portable builds
+out/
+dist/
+published/
+anki_media/
+*.apkg
+*.mp3
+*.wav
+
+# Logs
+logs/
+*.log
+
+# Python bytecode & virtual environments
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+venv/
+python/
+
+# OS metadata
+.DS_Store
+Thumbs.db
+desktop.ini

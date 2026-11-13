@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+  <key>Label</key>
+  <string>com.hoerbuch.studio</string>
+
+  <key>WorkingDirectory</key>
+  <string>/Users/YOUR_USER/hoerbuch-generator</string>
+
+  <key>ProgramArguments</key>
+  <array>
+    <string>/Users/YOUR_USER/hoerbuch-generator/.venv/bin/python</string>
+    <string>-I</string>
+    <string>/Users/YOUR_USER/hoerbuch-generator/web.py</string>
+    <string>--host</string>
+    <string>0.0.0.0</string>
+    <string>--port</string>
+    <string>7865</string>
+    <string>--no-browser</string>
+  </array>
+
+  <key>EnvironmentVariables</key>
+  <dict>
+    <key>PYTHONUNBUFFERED</key>
+    <string>1</string>
+  </dict>
+
+  <key>RunAtLoad</key>
+  <true/>
+
+  <key>KeepAlive</key>
+  <true/>
+
+  <key>StandardOutPath</key>
+  <string>/Users/YOUR_USER/hoerbuch-generator/logs/studio.out.log</string>
+
+  <key>StandardErrorPath</key>
+  <string>/Users/YOUR_USER/hoerbuch-generator/logs/studio.err.log</string>
+</dict>
+</plist>

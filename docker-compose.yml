@@ -1,0 +1,22 @@
+services:
+  hoerbuch-studio:
+    build: .
+    container_name: hoerbuch-studio
+    restart: unless-stopped
+    ports:
+      # For local/reverse-proxy only, bind to 127.0.0.1:7865:7865 instead
+      - "7865:7865"
+    env_file:
+      - .env
+    volumes:
+      - ./out:/app/out
+      - ./published:/app/published
+      # Optional: mount a known-vocabulary Anki export or word list
+      # - ./known_words.apkg:/app/known_words.apkg:ro
+      # Optional: mount machine-specific config overrides
+      # - ./config.local.json:/app/config.local.json:ro
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"

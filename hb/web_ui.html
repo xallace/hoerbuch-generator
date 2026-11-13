@@ -1,0 +1,888 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hörbuch-Generator Studio (Stufe 2)</title>
+<style>
+  :root {
+    --bg: #0f172a;
+    --panel: #1e293b;
+    --panel-alt: #0b1120;
+    --border: #334155;
+    --text: #f1f5f9;
+    --muted: #94a3b8;
+    --accent: #6366f1;
+    --accent-hover: #4f46e5;
+    --green: #10b981;
+    --amber: #f59e0b;
+    --red: #ef4444;
+    --radius: 12px;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.5;
+  }
+  header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 24px;
+    background: var(--panel-alt);
+    border-bottom: 1px solid var(--border);
+    position: sticky;
+    top: 0;
+    z-index: 20;
+  }
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-weight: 700;
+    font-size: 18px;
+  }
+  .badge {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    padding: 3px 10px;
+    border-radius: 999px;
+    background: rgba(99, 102, 241, 0.18);
+    color: #a5b4fc;
+    border: 1px solid rgba(99, 102, 241, 0.35);
+  }
+  .badge.green { background: rgba(16, 185, 129, 0.16); color: #6ee7b7; border-color: rgba(16, 185, 129, 0.35); }
+  .badge.amber { background: rgba(245, 158, 11, 0.16); color: #fcd34d; border-color: rgba(245, 158, 11, 0.35); }
+  .badge.red { background: rgba(239, 68, 68, 0.16); color: #fca5a5; border-color: rgba(239, 68, 68, 0.35); }
+  .layout {
+    display: grid;
+    grid-template-columns: 380px 1fr;
+    min-height: calc(100vh - 57px);
+  }
+  @media (max-width: 1024px) {
+    .layout { grid-template-columns: 1fr; }
+  }
+  .sidebar {
+    background: var(--panel-alt);
+    border-right: 1px solid var(--border);
+    padding: 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  .main {
+    padding: 22px 28px;
+    overflow-y: auto;
+  }
+  .card {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 16px 18px;
+    margin-bottom: 16px;
+  }
+  h2, h3, h4 { margin: 0 0 10px 0; }
+  h2 { font-size: 18px; }
+  h3 { font-size: 15px; color: #e2e8f0; }
+  label {
+    display: block;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--muted);
+    margin-bottom: 4px;
+    margin-top: 10px;
+  }
+  input[type="text"], input[type="password"], input[type="number"], select, textarea {
+    width: 100%;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    color: var(--text);
+    padding: 8px 10px;
+    border-radius: 8px;
+    font-size: 13.5px;
+    font-family: inherit;
+  }
+  textarea { resize: vertical; min-height: 68px; }
+  .row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .row-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; }
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    padding: 9px 14px;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    background: #273549;
+    color: var(--text);
+    font-weight: 600;
+    font-size: 13px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background 0.15s;
+  }
+  .btn:hover { background: #334155; }
+  .btn.primary {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: #fff;
+  }
+  .btn.primary:hover { background: var(--accent-hover); }
+  .btn.green {
+    background: #059669;
+    border-color: #059669;
+    color: #fff;
+  }
+  .btn.green:hover { background: #047857; }
+  .btn:disabled { opacity: 0.5; cursor: not-allowed; }
+  .preset-pills {
+    display: flex;
+    gap: 6px;
+    margin-top: 6px;
+    flex-wrap: wrap;
+  }
+  .pill {
+    padding: 4px 10px;
+    font-size: 12px;
+    border-radius: 999px;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    color: var(--muted);
+    cursor: pointer;
+  }
+  .pill.active, .pill:hover {
+    border-color: var(--accent);
+    color: #fff;
+    background: rgba(99, 102, 241, 0.2);
+  }
+  .plan-box {
+    margin-top: 10px;
+    padding: 10px 12px;
+    border-radius: 8px;
+    background: rgba(99, 102, 241, 0.1);
+    border: 1px solid rgba(99, 102, 241, 0.25);
+    font-size: 12.5px;
+    color: #c7d2fe;
+  }
+  .book-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    max-height: 420px;
+    overflow-y: auto;
+  }
+  .book-item {
+    padding: 10px 12px;
+    border-radius: 9px;
+    background: var(--panel);
+    border: 1px solid var(--border);
+    cursor: pointer;
+    transition: border-color 0.15s;
+  }
+  .book-item:hover, .book-item.active {
+    border-color: var(--accent);
+    background: #243247;
+  }
+  .book-title { font-weight: 600; font-size: 13.5px; margin-bottom: 3px; }
+  .book-meta { font-size: 11.5px; color: var(--muted); display: flex; gap: 8px; flex-wrap: wrap; }
+  .tabs {
+    display: flex;
+    gap: 8px;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 16px;
+    padding-bottom: 8px;
+  }
+  .tab {
+    padding: 7px 14px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    color: var(--muted);
+    background: transparent;
+    border: 1px solid transparent;
+  }
+  .tab.active {
+    color: #fff;
+    background: var(--panel);
+    border-color: var(--border);
+  }
+  .log-console {
+    background: #070b14;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 10px 12px;
+    font-family: Consolas, Monaco, monospace;
+    font-size: 12px;
+    max-height: 220px;
+    overflow-y: auto;
+    color: #cbd5e1;
+  }
+  .log-line { margin-bottom: 3px; }
+  .log-time { color: #64748b; margin-right: 8px; }
+  .phase-bar {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin: 10px 0;
+  }
+  .vocab-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 10px;
+  }
+  .vocab-card {
+    background: var(--panel-alt);
+    border: 1px solid var(--border);
+    border-radius: 9px;
+    padding: 10px 12px;
+  }
+  .sent-row {
+    display: grid;
+    grid-template-columns: 42px 1fr 1fr auto;
+    gap: 10px;
+    align-items: start;
+    padding: 8px 10px;
+    border-bottom: 1px solid rgba(51, 65, 85, 0.5);
+    border-radius: 6px;
+  }
+  .sent-row:hover { background: rgba(255, 255, 255, 0.03); }
+  .sent-row.playing {
+    background: rgba(99, 102, 241, 0.16);
+    border-left: 3px solid var(--accent);
+  }
+  .sent-num { font-weight: 700; color: var(--muted); font-size: 12.5px; padding-top: 6px; }
+  .progress-wrap {
+    height: 8px;
+    background: var(--bg);
+    border-radius: 999px;
+    overflow: hidden;
+    margin: 8px 0;
+  }
+  .progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--accent), var(--green));
+    width: 0%;
+    transition: width 0.3s;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="brand">
+    <span>🎧 Hörbuch-Generator Studio</span>
+    <span class="badge">Stufe 2 · Lokale Web-Oberfläche</span>
+  </div>
+  <div style="display:flex; gap:10px; align-items:center;">
+    <span id="apiKeyStatus" class="badge">Prüfe API-Key…</span>
+    <span id="knownStatus" class="badge">Anki-Wortschatz…</span>
+  </div>
+</header>
+
+<div class="layout">
+  <!-- Linke Spalte: Generator-Formular & Bibliothek -->
+  <aside class="sidebar">
+    <div class="card" style="margin-bottom:0;">
+      <h3>✨ Neues Hörbuch generieren</h3>
+      <label for="inpSource">YouTube-URL, Webseite, Datei oder Text</label>
+      <textarea id="inpSource" placeholder="https://youtu.be/... oder Text eingeben"></textarea>
+
+      <div class="row">
+        <div>
+          <label for="selTarget">Zielsprache</label>
+          <select id="selTarget"></select>
+        </div>
+        <div>
+          <label for="selHelper">Hilfssprache</label>
+          <select id="selHelper"></select>
+        </div>
+      </div>
+
+      <div class="row-3">
+        <div>
+          <label for="selExtra">Zweitübersetzung</label>
+          <select id="selExtra">
+            <option value="none">– keine –</option>
+          </select>
+        </div>
+        <div>
+          <label for="selVoiceTarget">Zielstimme</label>
+          <select id="selVoiceTarget">
+            <option value="m">Männlich</option>
+            <option value="f">Weiblich</option>
+          </select>
+        </div>
+        <div>
+          <label for="selVoiceHelper">Hilfsstimme</label>
+          <select id="selVoiceHelper">
+            <option value="m">Männlich</option>
+            <option value="f">Weiblich</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="row">
+        <div>
+          <label for="selLevel">CEFR-Niveau</label>
+          <select id="selLevel">
+            <option value="A1">A1 (Einsteiger)</option>
+            <option value="A2">A2 (Grundlagen)</option>
+            <option value="B1">B1 (Mittelstufe)</option>
+            <option value="B2">B2 (Fortgeschritten)</option>
+          </select>
+        </div>
+        <div>
+          <label for="inpMinutes">Zieldauer (Minuten)</label>
+          <input type="number" id="inpMinutes" value="10" min="3" max="45" step="1">
+        </div>
+      </div>
+
+      <div class="preset-pills">
+        <span class="pill" data-min="5">⚡ 5 Min. (Kurz)</span>
+        <span class="pill active" data-min="10">🎯 10 Min.</span>
+        <span class="pill" data-min="20">📘 20 Min.</span>
+        <span class="pill" data-min="30">🔥 30 Min. (Langlauf)</span>
+      </div>
+
+      <div id="planPreview" class="plan-box">Berechne Umfang…</div>
+
+      <div style="margin-top:10px; display:flex; flex-direction:column; gap:6px; font-size:12.5px;">
+        <label style="display:flex; align-items:center; gap:8px; margin:0; color:var(--text); cursor:pointer;">
+          <input type="checkbox" id="chkKnown" checked> Bekannte Anki-Wörter als Anker nutzen
+        </label>
+        <label style="display:flex; align-items:center; gap:8px; margin:0; color:var(--text); cursor:pointer;">
+          <input type="checkbox" id="chkPublish" checked> <span id="chkPublishLabel">Direkt in Export-Ordner kopieren</span>
+        </label>
+      </div>
+
+      <details style="margin-top:10px; font-size:12px; color:var(--muted);">
+        <summary style="cursor:pointer;">Erweiterte Optionen (Satz-/Vokabelzahl, API-Key)</summary>
+        <div class="row" style="margin-top:6px;">
+          <div>
+            <label for="inpSentences">Sätze (optional)</label>
+            <input type="number" id="inpSentences" placeholder="Auto">
+          </div>
+          <div>
+            <label for="inpVocab">Vokabeln (optional)</label>
+            <input type="number" id="inpVocab" placeholder="Auto">
+          </div>
+        </div>
+        <label for="inpApiKey">Gemini API-Key (optional, falls nicht in Umgebung)</label>
+        <input type="password" id="inpApiKey" placeholder="AIzaSy...">
+      </details>
+
+      <div style="margin-top:14px; display:flex; flex-direction:column; gap:8px;">
+        <button id="btnRunAll" class="btn primary" style="width:100%;">🚀 Komplettes Hörbuch bauen (Stufe 1–6)</button>
+        <button id="btnRunDraft" class="btn" style="width:100%;">📝 Nur Skript & Prüfung (Stufe 1–3)</button>
+      </div>
+    </div>
+
+    <div class="card" style="margin-bottom:0; flex:1; display:flex; flex-direction:column;">
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+        <h3 style="margin:0;">📚 Generierte Hörbücher (<span id="bookCount">0</span>)</h3>
+        <button id="btnRefreshBooks" class="btn" style="padding:4px 8px; font-size:11px;">↻</button>
+      </div>
+      <div id="bookList" class="book-list"></div>
+    </div>
+  </aside>
+
+  <!-- Rechte Hauptspalte: Live-Jobstatus + Hörbuch-Inspektor / Player / Editor -->
+  <main class="main">
+    <!-- Live-Jobstatus -->
+    <div id="jobCard" class="card" style="display:none;">
+      <div style="display:flex; justify-content:space-between; align-items:center;">
+        <h3 id="jobTitle" style="margin:0;">⚙️ Auftrag läuft…</h3>
+        <span id="jobBadge" class="badge amber">Aktiv</span>
+      </div>
+      <div class="progress-wrap">
+        <div id="jobProgress" class="progress-fill"></div>
+      </div>
+      <div id="jobConsole" class="log-console"></div>
+    </div>
+
+    <!-- Aktives Hörbuch -->
+    <div id="bookDetail" style="display:none;">
+      <div class="card">
+        <div style="display:flex; gap:18px; align-items:flex-start; flex-wrap:wrap;">
+          <img id="detailCover" src="" alt="Cover" style="width:110px; height:110px; border-radius:10px; object-fit:cover; border:1px solid var(--border); display:none;">
+          <div style="flex:1; min-width:260px;">
+            <div style="display:flex; gap:8px; align-items:center; flex-wrap:wrap; margin-bottom:4px;">
+              <span id="detailLevelBadge" class="badge"></span>
+              <span id="detailStatsBadge" class="badge green"></span>
+              <span id="detailPubBadge" class="badge" style="display:none;">Veröffentlicht</span>
+            </div>
+            <h2 id="detailTitle" style="margin:4px 0;"></h2>
+            <div id="detailSubTitle" style="color:var(--muted); font-size:14px; margin-bottom:8px;"></div>
+            <p id="detailIntro" style="font-size:13.5px; color:#cbd5e1; margin:0 0 12px 0;"></p>
+
+            <div style="display:flex; gap:8px; flex-wrap:wrap;">
+              <a id="btnDlMp3" class="btn primary" href="#" download>🎧 MP3 herunterladen</a>
+              <a id="btnDlApkg" class="btn green" href="#" download>🗂️ Anki-Deck (.apkg)</a>
+              <button id="btnReSynth" class="btn">🔄 Skript neu vertonen (Stufe 4–6)</button>
+              <button id="btnPublishNow" class="btn">📤 In Export-Ordner kopieren</button>
+              <button id="btnOpenFolder" class="btn">📂 Ordner öffnen</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Audio-Player & Phasen-Sprungmarken -->
+        <div id="playerSection" style="margin-top:16px; padding-top:14px; border-top:1px solid var(--border); display:none;">
+          <audio id="mainAudio" controls style="width:100%; height:40px;"></audio>
+          <div id="phaseButtons" class="phase-bar"></div>
+        </div>
+      </div>
+
+      <!-- Reiter für Skript/Editor, Vokabeln, Prüfbericht, README -->
+      <div class="tabs">
+        <button class="tab active" data-tab="tabStory">📖 Geschichte & Skript-Editor</button>
+        <button class="tab" data-tab="tabVocab">🧩 Sandwich-Vokabeln</button>
+        <button class="tab" data-tab="tabCheck">✅ Qualitätsprüfung (check.md)</button>
+        <button class="tab" data-tab="tabReadme">📄 Vollständige README</button>
+      </div>
+
+      <!-- Tab 1: Geschichte & Editor -->
+      <div id="tabStory" class="tab-pane card">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
+          <div>
+            <h3 style="margin:0;">Zweisprachiges Skript (Klick auf ▶ spielt den Satz ab)</h3>
+            <span style="font-size:12px; color:var(--muted);">Sätze lassen sich direkt im Textfeld bearbeiten und speichern.</span>
+          </div>
+          <button id="btnSaveScript" class="btn primary">💾 Änderungen in script.json speichern & prüfen</button>
+        </div>
+        <div id="storyContainer"></div>
+      </div>
+
+      <!-- Tab 2: Vokabeln -->
+      <div id="tabVocab" class="tab-pane card" style="display:none;">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
+          <h3 style="margin:0;">Sandwich-Vokabeln & Morphologie</h3>
+          <button id="btnSaveVocab" class="btn primary">💾 Vokabel-Änderungen speichern</button>
+        </div>
+        <div id="vocabContainer" class="vocab-grid"></div>
+      </div>
+
+      <!-- Tab 3: Prüfbericht -->
+      <div id="tabCheck" class="tab-pane card" style="display:none;">
+        <h3>Prüfbericht (Deterministische Regeln + Korrektor-LLM)</h3>
+        <pre id="checkContent" style="white-space:pre-wrap; font-family:inherit; font-size:13.5px; background:var(--panel-alt); padding:14px; border-radius:8px; border:1px solid var(--border);"></pre>
+      </div>
+
+      <!-- Tab 4: README -->
+      <div id="tabReadme" class="tab-pane card" style="display:none;">
+        <h3>README & Transkript</h3>
+        <pre id="readmeContent" style="white-space:pre-wrap; font-family:inherit; font-size:13.5px; background:var(--panel-alt); padding:14px; border-radius:8px; border:1px solid var(--border);"></pre>
+      </div>
+    </div>
+  </main>
+</div>
+
+<script>
+let META = null;
+let CURRENT_BOOK = null;
+let POLL_TIMER = null;
+
+async function api(url, opts) {
+  const r = await fetch(url, opts);
+  return await r.json();
+}
+
+function fmtSec(s) {
+  if (!s && s !== 0) return '–';
+  const m = Math.floor(s / 60);
+  const sec = Math.round(s % 60);
+  return `${String(m).padStart(2, '0')}:${String(sec).padStart(2, '0')}`;
+}
+
+async function init() {
+  META = await api('/api/meta');
+  const keyBadge = document.getElementById('apiKeyStatus');
+  if (META.has_api_key) {
+    keyBadge.textContent = '🔑 Gemini API-Key aktiv';
+    keyBadge.className = 'badge green';
+  } else {
+    keyBadge.textContent = '⚠️ Kein API-Key (bitte eingeben)';
+    keyBadge.className = 'badge amber';
+  }
+
+  const knownBadge = document.getElementById('knownStatus');
+  if (META.known_info && META.known_info.exists) {
+    knownBadge.textContent = `📚 Anki: ${META.known_info.known} bekannte Wörter`;
+    knownBadge.className = 'badge green';
+  } else if (META.known_info && META.known_info.path) {
+    knownBadge.textContent = '📚 Anki-Datei nicht gefunden';
+  } else {
+    knownBadge.textContent = '📚 Kein Anki-Wortschatz konfiguriert';
+  }
+
+  if (META.publish_label) {
+    document.getElementById('chkPublishLabel').textContent = `Direkt nach „${META.publish_label}“ kopieren`;
+    document.getElementById('btnPublishNow').textContent = `📤 Nach „${META.publish_label}“ kopieren`;
+    document.getElementById('detailPubBadge').textContent = `In ${META.publish_label}`;
+  }
+
+  const selTarget = document.getElementById('selTarget');
+  const selHelper = document.getElementById('selHelper');
+  const selExtra = document.getElementById('selExtra');
+  for (const [code, info] of Object.entries(META.languages)) {
+    selTarget.add(new Option(`${info.name_de} (${code.toUpperCase()})`, code));
+    selHelper.add(new Option(`${info.name_de} (${code.toUpperCase()})`, code));
+    selExtra.add(new Option(`${info.name_de} (${code.toUpperCase()})`, code));
+  }
+  selTarget.value = 'tr';
+  selHelper.value = 'en';
+  selExtra.value = 'de';
+  updateVoiceLabels();
+
+  selTarget.addEventListener('change', updateVoiceLabels);
+  selHelper.addEventListener('change', updateVoiceLabels);
+  document.getElementById('selLevel').addEventListener('change', updatePlan);
+  document.getElementById('inpMinutes').addEventListener('input', updatePlan);
+  document.getElementById('inpSentences').addEventListener('input', updatePlan);
+  document.getElementById('inpVocab').addEventListener('input', updatePlan);
+
+  document.querySelectorAll('.pill[data-min]').forEach(p => {
+    p.addEventListener('click', () => {
+      document.querySelectorAll('.pill[data-min]').forEach(x => x.classList.remove('active'));
+      p.classList.add('active');
+      document.getElementById('inpMinutes').value = p.dataset.min;
+      updatePlan();
+    });
+  });
+
+  document.querySelectorAll('.tab').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.tab').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.tab-pane').forEach(p => p.style.display = 'none');
+      btn.classList.add('active');
+      document.getElementById(btn.dataset.tab).style.display = 'block';
+    });
+  });
+
+  document.getElementById('btnRunAll').addEventListener('click', () => triggerJob('all'));
+  document.getElementById('btnRunDraft').addEventListener('click', () => triggerJob('source,script,check'));
+  document.getElementById('btnRefreshBooks').addEventListener('click', loadBooks);
+  document.getElementById('btnSaveScript').addEventListener('click', saveEditedScript);
+  document.getElementById('btnSaveVocab').addEventListener('click', saveEditedScript);
+  document.getElementById('btnReSynth').addEventListener('click', () => {
+    if (!CURRENT_BOOK) return;
+    triggerJob('audio,anki,readme', CURRENT_BOOK.summary.slug);
+  });
+  document.getElementById('btnPublishNow').addEventListener('click', async () => {
+    if (!CURRENT_BOOK) return;
+    const res = await api(`/api/book/${encodeURIComponent(CURRENT_BOOK.summary.slug)}/publish`, { method: 'POST' });
+    if (res.ok) {
+      alert(`Kopiert nach ${res.dest}:\n` + res.copied.join('\n'));
+      loadBookDetail(CURRENT_BOOK.summary.slug);
+      loadBooks();
+    }
+  });
+  document.getElementById('btnOpenFolder').addEventListener('click', async () => {
+    if (!CURRENT_BOOK) return;
+    await api(`/api/book/${encodeURIComponent(CURRENT_BOOK.summary.slug)}/open_folder`, { method: 'POST' });
+  });
+
+  await updatePlan();
+  await loadBooks();
+  const st = await api('/api/job/status');
+  if (st.running) startPolling();
+}
+
+function updateVoiceLabels() {
+  const t = META.languages[document.getElementById('selTarget').value];
+  const h = META.languages[document.getElementById('selHelper').value];
+  const vt = document.getElementById('selVoiceTarget');
+  const vh = document.getElementById('selVoiceHelper');
+  if (t) {
+    vt.options[0].textContent = `M (${t.voices.m.split('-')[2].replace('Neural', '')})`;
+    vt.options[1].textContent = `W (${t.voices.f.split('-')[2].replace('Neural', '')})`;
+  }
+  if (h) {
+    vh.options[0].textContent = `M (${h.voices.m.split('-')[2].replace('Neural', '')})`;
+    vh.options[1].textContent = `W (${h.voices.f.split('-')[2].replace('Neural', '')})`;
+  }
+}
+
+async function updatePlan() {
+  const min = document.getElementById('inpMinutes').value || 10;
+  const lvl = document.getElementById('selLevel').value || 'A1';
+  const sents = document.getElementById('inpSentences').value || '';
+  const vocab = document.getElementById('inpVocab').value || '';
+  const p = await api(`/api/plan?minutes=${encodeURIComponent(min)}&level=${encodeURIComponent(lvl)}&sentences=${encodeURIComponent(sents)}&vocab=${encodeURIComponent(vocab)}`);
+  document.getElementById('planPreview').innerHTML =
+    `<strong>Geplanter Umfang (${lvl}):</strong> ~${p.sentences} Sätze in ${p.chapters} Kapiteln · ` +
+    `${p.vocab} Sandwich-Vokabeln · geschätzte MP3-Dauer: <strong>${fmtSec(p.estimated_seconds)} min</strong>`;
+}
+
+async function loadBooks() {
+  const books = await api('/api/books');
+  document.getElementById('bookCount').textContent = books.length;
+  const list = document.getElementById('bookList');
+  list.innerHTML = '';
+  for (const b of books) {
+    const div = document.createElement('div');
+    div.className = 'book-item' + (CURRENT_BOOK && CURRENT_BOOK.summary.slug === b.slug ? ' active' : '');
+    div.innerHTML = `
+      <div class="book-title">${b.short_title}</div>
+      <div class="book-meta">
+        <span>${b.target.toUpperCase()}→${b.helper.toUpperCase()} (${b.level})</span>
+        <span>${b.sentences_count} Sätze · ${b.vocab_count} Vok.</span>
+        ${b.duration_fmt ? `<span>🎧 ${b.duration_fmt}</span>` : '<span>📝 Entwurf</span>'}
+        ${b.published ? '<span style="color:#6ee7b7;">✔ Veröffentlicht</span>' : ''}
+      </div>
+    `;
+    div.addEventListener('click', () => loadBookDetail(b.slug));
+    list.appendChild(div);
+  }
+  if (!CURRENT_BOOK && books.length > 0) {
+    loadBookDetail(books[0].slug);
+  }
+}
+
+async function loadBookDetail(slug) {
+  const data = await api(`/api/book/${encodeURIComponent(slug)}`);
+  if (!data || data.error) return;
+  CURRENT_BOOK = data;
+  document.getElementById('bookDetail').style.display = 'block';
+  document.querySelectorAll('.book-item').forEach(el => {
+    el.classList.toggle('active', el.querySelector('.book-title').textContent === data.summary.short_title);
+  });
+
+  const s = data.summary;
+  const sc = data.script || {};
+  document.getElementById('detailLevelBadge').textContent = `${s.target.toUpperCase()} ➔ ${s.helper.toUpperCase()} · ${s.level}`;
+  document.getElementById('detailStatsBadge').textContent =
+    `${s.chapters_count} Kapitel · ${s.sentences_count} Sätze · ${s.vocab_count} Vokabeln` +
+    (s.duration_fmt ? ` · ${s.duration_fmt} min` : '');
+  document.getElementById('detailPubBadge').style.display = s.published ? 'inline-block' : 'none';
+  document.getElementById('detailTitle').textContent = s.short_title;
+  document.getElementById('detailSubTitle').textContent = `${s.title_helper}${s.title_target ? ' · ' + s.title_target : ''}`;
+  document.getElementById('detailIntro').textContent = s.intro || '';
+
+  const cover = document.getElementById('detailCover');
+  if (s.has_cover) {
+    cover.src = `/out/${encodeURIComponent(s.slug)}/cover.jpg?t=${Date.now()}`;
+    cover.style.display = 'block';
+  } else {
+    cover.style.display = 'none';
+  }
+
+  const btnMp3 = document.getElementById('btnDlMp3');
+  const btnApkg = document.getElementById('btnDlApkg');
+  const playerSec = document.getElementById('playerSection');
+  const audioEl = document.getElementById('mainAudio');
+
+  if (s.mp3_file) {
+    const mp3Url = `/out/${encodeURIComponent(s.slug)}/${encodeURIComponent(s.mp3_file)}`;
+    btnMp3.href = mp3Url + '?download=1';
+    btnMp3.style.display = 'inline-flex';
+    playerSec.style.display = 'block';
+    audioEl.src = mp3Url;
+  } else {
+    btnMp3.style.display = 'none';
+    playerSec.style.display = 'none';
+  }
+
+  if (s.apkg_file) {
+    btnApkg.href = `/out/${encodeURIComponent(s.slug)}/${encodeURIComponent(s.apkg_file)}?download=1`;
+    btnApkg.style.display = 'inline-flex';
+  } else {
+    btnApkg.style.display = 'none';
+  }
+
+  // Phasen-Sprungmarken
+  const phaseBar = document.getElementById('phaseButtons');
+  phaseBar.innerHTML = '';
+  for (const ph of (data.timeline || [])) {
+    const b = document.createElement('button');
+    b.className = 'pill';
+    b.textContent = `▶ ${ph.name} (${fmtSec(ph.start)} – ${fmtSec(ph.end)})`;
+    b.addEventListener('click', () => {
+      audioEl.currentTime = ph.start;
+      audioEl.play();
+    });
+    phaseBar.appendChild(b);
+  }
+
+  // Startzeiten je Satz in der Story-Phase ermitteln
+  const sentStart = {};
+  for (const seg of (data.segments || [])) {
+    if (seg.phase === 'story' && seg.kind === 'clip' && seg.role === 'sentence' && seg.ref) {
+      sentStart[seg.ref] = seg.start;
+    }
+  }
+
+  // Tab 1: Geschichte & Editor rendern
+  const storyContainer = document.getElementById('storyContainer');
+  storyContainer.innerHTML = '';
+  for (const [ci, ch] of (sc.chapters || []).entries()) {
+    const chDiv = document.createElement('div');
+    chDiv.style.marginBottom = '18px';
+    chDiv.innerHTML = `<h4 style="color:#a5b4fc; margin:12px 0 8px 0;">Kapitel ${ci + 1}: ${ch.title_target || ''} (${ch.title_helper || ''})</h4>`;
+    for (const sent of (ch.sentences || [])) {
+      const row = document.createElement('div');
+      row.className = 'sent-row';
+      row.dataset.n = sent.n;
+      const startSec = sentStart[sent.n];
+      row.innerHTML = `
+        <div class="sent-num">#${sent.n}</div>
+        <input type="text" class="edit-sent-target" data-n="${sent.n}" value="${(sent.target || '').replace(/"/g, '&quot;')}">
+        <input type="text" class="edit-sent-helper" data-n="${sent.n}" value="${(sent.helper || '').replace(/"/g, '&quot;')}">
+        <button class="btn play-sent-btn" style="padding:6px 10px;" title="Im Hörbuch abspielen">${startSec !== undefined ? '▶ ' + fmtSec(startSec) : '–'}</button>
+      `;
+      if (startSec !== undefined) {
+        row.querySelector('.play-sent-btn').addEventListener('click', () => {
+          audioEl.currentTime = startSec;
+          audioEl.play();
+        });
+      } else {
+        row.querySelector('.play-sent-btn').disabled = true;
+      }
+      chDiv.appendChild(row);
+    }
+    storyContainer.appendChild(chDiv);
+  }
+
+  // Tab 2: Vokabeln rendern
+  const vocabContainer = document.getElementById('vocabContainer');
+  vocabContainer.innerHTML = '';
+  for (const v of (sc.vocab || [])) {
+    const card = document.createElement('div');
+    card.className = 'vocab-card';
+    card.innerHTML = `
+      <div style="display:flex; justify-content:space-between; font-size:12px; color:var(--muted); margin-bottom:4px;">
+        <span>Vokabel #${v.n}</span>
+        <span>Beispielsatz #${v.sentence || '?'}</span>
+      </div>
+      <label>Zielwort</label>
+      <input type="text" class="edit-voc-target" data-n="${v.n}" value="${(v.target || '').replace(/"/g, '&quot;')}">
+      <label>Übersetzung (${s.helper.toUpperCase()})</label>
+      <input type="text" class="edit-voc-helper" data-n="${v.n}" value="${(v.helper || '').replace(/"/g, '&quot;')}">
+      ${s.extra ? `<label>Zweitübersetzung (${s.extra.toUpperCase()})</label>
+      <input type="text" class="edit-voc-extra" data-n="${v.n}" value="${(v.extra || '').replace(/"/g, '&quot;')}">` : ''}
+      <label>Grammatiknotiz</label>
+      <textarea class="edit-voc-note" data-n="${v.n}" style="min-height:52px;">${v.note || ''}</textarea>
+    `;
+    vocabContainer.appendChild(card);
+  }
+
+  document.getElementById('checkContent').textContent = data.check_md || 'Noch kein Prüfbericht vorhanden.';
+  document.getElementById('readmeContent').textContent = data.readme_md || 'Noch keine README erzeugt.';
+}
+
+async function saveEditedScript() {
+  if (!CURRENT_BOOK || !CURRENT_BOOK.script) return;
+  const sc = JSON.parse(JSON.stringify(CURRENT_BOOK.script));
+  const targetInputs = {};
+  const helperInputs = {};
+  document.querySelectorAll('.edit-sent-target').forEach(el => targetInputs[el.dataset.n] = el.value);
+  document.querySelectorAll('.edit-sent-helper').forEach(el => helperInputs[el.dataset.n] = el.value);
+
+  for (const ch of (sc.chapters || [])) {
+    for (const s of (ch.sentences || [])) {
+      if (targetInputs[s.n] !== undefined) s.target = targetInputs[s.n];
+      if (helperInputs[s.n] !== undefined) s.helper = helperInputs[s.n];
+    }
+  }
+
+  const vTarget = {}, vHelper = {}, vExtra = {}, vNote = {};
+  document.querySelectorAll('.edit-voc-target').forEach(el => vTarget[el.dataset.n] = el.value);
+  document.querySelectorAll('.edit-voc-helper').forEach(el => vHelper[el.dataset.n] = el.value);
+  document.querySelectorAll('.edit-voc-extra').forEach(el => vExtra[el.dataset.n] = el.value);
+  document.querySelectorAll('.edit-voc-note').forEach(el => vNote[el.dataset.n] = el.value);
+
+  for (const v of (sc.vocab || [])) {
+    if (vTarget[v.n] !== undefined) v.target = vTarget[v.n];
+    if (vHelper[v.n] !== undefined) v.helper = vHelper[v.n];
+    if (vExtra[v.n] !== undefined) v.extra = vExtra[v.n];
+    if (vNote[v.n] !== undefined) v.note = vNote[v.n];
+  }
+
+  const res = await api(`/api/book/${encodeURIComponent(CURRENT_BOOK.summary.slug)}/script`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ script: sc }),
+  });
+  if (res.ok) {
+    await loadBookDetail(CURRENT_BOOK.summary.slug);
+    alert('Skript gespeichert und textliche Prüfung aktualisiert! Klicke auf „Skript neu vertonen (Stufe 4–6)“, um MP3 und Anki-Deck neu zu bauen.');
+  } else {
+    alert('Fehler beim Speichern: ' + (res.error || 'unbekannt'));
+  }
+}
+
+async function triggerJob(steps, existingSlug) {
+  const payload = {
+    input: document.getElementById('inpSource').value.trim(),
+    target: document.getElementById('selTarget').value,
+    helper: document.getElementById('selHelper').value,
+    extra: document.getElementById('selExtra').value,
+    voice_target: document.getElementById('selVoiceTarget').value,
+    voice_helper: document.getElementById('selVoiceHelper').value,
+    level: document.getElementById('selLevel').value,
+    minutes: parseFloat(document.getElementById('inpMinutes').value || '10'),
+    sentences: document.getElementById('inpSentences').value || null,
+    vocab: document.getElementById('inpVocab').value || null,
+    use_known: document.getElementById('chkKnown').checked,
+    publish: document.getElementById('chkPublish').checked,
+    api_key: document.getElementById('inpApiKey').value.trim(),
+    steps: steps,
+    slug: existingSlug || null,
+  };
+  const res = await api('/api/job/start', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(payload),
+  });
+  if (res.error) {
+    alert(res.error);
+    return;
+  }
+  startPolling();
+}
+
+function startPolling() {
+  document.getElementById('jobCard').style.display = 'block';
+  if (POLL_TIMER) clearInterval(POLL_TIMER);
+  POLL_TIMER = setInterval(async () => {
+    const st = await api('/api/job/status');
+    document.getElementById('jobTitle').textContent = `⚙️ ${st.step || 'Arbeite…'} (${st.elapsed_sec}s)`;
+    const pct = st.total_steps ? Math.min(100, Math.round((st.step_index / st.total_steps) * 100)) : 20;
+    document.getElementById('jobProgress').style.width = `${pct}%`;
+
+    const con = document.getElementById('jobConsole');
+    con.innerHTML = (st.logs || []).map(l =>
+      `<div class="log-line"><span class="log-time">[${l.t.toFixed(1)}s]</span>${l.msg}</div>`
+    ).join('');
+    con.scrollTop = con.scrollHeight;
+
+    const badge = document.getElementById('jobBadge');
+    if (st.running) {
+      badge.textContent = 'Läuft…';
+      badge.className = 'badge amber';
+    } else {
+      clearInterval(POLL_TIMER);
+      POLL_TIMER = null;
+      if (st.error) {
+        badge.textContent = 'Fehler';
+        badge.className = 'badge red';
+      } else {
+        badge.textContent = 'Fertig';
+        badge.className = 'badge green';
+        document.getElementById('jobProgress').style.width = '100%';
+        await loadBooks();
+        if (st.slug) await loadBookDetail(st.slug);
+      }
+    }
+  }, 1000);
+}
+
+init();
+</script>
+</body>
+</html>

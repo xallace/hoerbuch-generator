@@ -1,0 +1,26 @@
+{
+  "model": "gemini-3.8-flash",
+  "temperature": 0.4,
+  "target_rate": "-20%",
+  "helper_rate": "+0%",
+  "voice_gender": {"target": "m", "helper": "m"},
+  "pauses": {
+    "after_title": 1.5,
+    "vocab_inner": 0.7,
+    "vocab_between": 1.2,
+    "think": 1.6,
+    "consolidate": 2.5,
+    "breath": 1.4,
+    "chapter": 2.0,
+    "phase": 2.5
+  },
+  "bitrate": "128k",
+  "sample_rate": 48000,
+  "album": "{target_en} {level} – Audiobooks",
+  "album_artist": "Audiobook Generator",
+  "deck_root": "{target_en}::01 Audiobooks",
+  "publish_dir": "published",
+  "known_path": "",
+  "chapter_size": 15,
+  "tts_concurrency": 4
+}

@@ -1,0 +1,179 @@
+{
+  "version": 1,
+  "target": "tr",
+  "helper": "en",
+  "extra": "de",
+  "level": "A1",
+  "title_helper": "A Morning Walk by the Sea",
+  "title_target": "Deniz Kenarında Sabah Yürüyüşü",
+  "short_title": "Morning Walk - Deniz Kenarında Sabah Yürüyüşü",
+  "intro": "A gentle A1 Turkish story about a calm morning walk, breakfast at a small bakery, and meeting friends in the park.",
+  "source": {
+    "title": "Synthetic Offline Test Fixture",
+    "author": "Test Suite",
+    "url": "",
+    "kind": "text"
+  },
+  "plan": {
+    "minutes": 30,
+    "sentences": 90,
+    "vocab": 25,
+    "chapters": 6
+  },
+  "vocab": [
+    {"n": 1, "target": "sabah", "helper": "morning", "extra": "Morgen", "note": "Noun used as a time expression.", "sentence": null},
+    {"n": 2, "target": "güneş", "helper": "sun", "extra": "Sonne", "note": "Subject noun in the opening scene.", "sentence": null},
+    {"n": 3, "target": "beklenti", "helper": "expectation", "extra": "Erwartung", "note": "Intentional glossary-gap fixture item (text uses bekliyor).", "sentence": null},
+    {"n": 4, "target": "pencere", "helper": "window", "extra": "Fenster", "note": "Used with ablative suffix -den.", "sentence": null},
+    {"n": 5, "target": "sokak", "helper": "street", "extra": "Straße", "note": "Used with plural or locative suffix.", "sentence": null},
+    {"n": 6, "target": "fırın", "helper": "bakery", "extra": "Bäckerei", "note": "Noun with locative/dative case.", "sentence": null},
+    {"n": 7, "target": "ekmek", "helper": "bread", "extra": "Brot", "note": "Direct object noun.", "sentence": null},
+    {"n": 8, "target": "kahve", "helper": "coffee", "extra": "Kaffee", "note": "Everyday beverage noun.", "sentence": null},
+    {"n": 9, "target": "masa", "helper": "table", "extra": "Tisch", "note": "Used with locative -da.", "sentence": null},
+    {"n": 10, "target": "peynir", "helper": "cheese", "extra": "Käse", "note": "Breakfast food noun.", "sentence": null},
+    {"n": 11, "target": "zeytin", "helper": "olive", "extra": "Olive", "note": "Breakfast food noun.", "sentence": null},
+    {"n": 12, "target": "deniz", "helper": "sea", "extra": "Meer", "note": "Used with locative or genitive context.", "sentence": null},
+    {"n": 13, "target": "vapur", "helper": "ferry", "extra": "Fähre", "note": "Common city transport noun.", "sentence": null},
+    {"n": 14, "target": "martı", "helper": "seagull", "extra": "Möwe", "note": "Plural -lar appears in the text.", "sentence": null},
+    {"n": 15, "target": "rüzgar", "helper": "wind", "extra": "Wind", "note": "Subject noun.", "sentence": null},
+    {"n": 16, "target": "park", "helper": "park", "extra": "Park", "note": "Used with locative -ta.", "sentence": null},
+    {"n": 17, "target": "ağaç", "helper": "tree", "extra": "Baum", "note": "Plural ağaçlar with consonant softening.", "sentence": null},
+    {"n": 18, "target": "seçim", "helper": "choice", "extra": "Wahl", "note": "Intentional glossary-gap fixture item (text uses seçiyor).", "sentence": null},
+    {"n": 19, "target": "çiçek", "helper": "flower", "extra": "Blume", "note": "Plural çiçekler in the park.", "sentence": null},
+    {"n": 20, "target": "kedi", "helper": "cat", "extra": "Katze", "note": "Everyday animal noun.", "sentence": null},
+    {"n": 21, "target": "köpek", "helper": "dog", "extra": "Hund", "note": "Everyday animal noun.", "sentence": null},
+    {"n": 22, "target": "kitap", "helper": "book", "extra": "Buch", "note": "Direct object noun.", "sentence": null},
+    {"n": 23, "target": "gazete", "helper": "newspaper", "extra": "Zeitung", "note": "Object of okumak.", "sentence": null},
+    {"n": 24, "target": "arkadaş", "helper": "friend", "extra": "Freund", "note": "Plural arkadaşlar.", "sentence": null},
+    {"n": 25, "target": "akşam", "helper": "evening", "extra": "Abend", "note": "Time noun at the end of the story.", "sentence": null}
+  ],
+  "chapters": [
+    {
+      "title_target": "Yeni Sabah",
+      "title_helper": "New Morning",
+      "sentences": [
+        {"n": 1, "target": "Bugün şehirde çok güzel bir sabah başlıyor.", "helper": "Today a very nice morning begins in the city."},
+        {"n": 2, "target": "Evde herkes erken uyanıyor ve hazırlanıyor.", "helper": "At home everyone wakes up early and gets ready."},
+        {"n": 3, "target": "Parlak güneş gökyüzünde yavaş yavaş yükseliyor.", "helper": "The bright sun rises slowly in the sky."},
+        {"n": 4, "target": "Ben küçük mutfakta pencereyi hemen açıyorum.", "helper": "I open the window right away in the small kitchen."},
+        {"n": 5, "target": "Dışarıdan temiz ve serin bir hava geliyor.", "helper": "Clean and cool air comes from outside."},
+        {"n": 6, "target": "Çocuk bahçede neşeyle oynuyor ve gülüyor.", "helper": "The child plays happily and laughs in the garden."},
+        {"n": 7, "target": "Küçük kedi yeşil çimlerde sessizce yürüyor.", "helper": "The little cat walks quietly on the green grass."},
+        {"n": 8, "target": "Ben kahverengi kapıyı yavaşça kapatıyorum.", "helper": "I gently close the brown door."},
+        {"n": 9, "target": "Şimdi dışarıda uzun ve sakin bir sokak var.", "helper": "Now there is a long and quiet street outside."},
+        {"n": 10, "target": "Komşular birbirine gülümsüyor ve selam veriyor.", "helper": "Neighbors smile at each other and say hello."},
+        {"n": 11, "target": "Köşedeki küçük fırından sıcak kokular geliyor.", "helper": "Warm smells come from the small bakery on the corner."},
+        {"n": 12, "target": "İnsanlar sabah yürüyüşü için dışarı çıkıyor.", "helper": "People go outside for a morning walk."},
+        {"n": 13, "target": "Ben de rahat ayakkabılarımı hızlıca giyiyorum.", "helper": "I also put on my comfortable shoes quickly."},
+        {"n": 14, "target": "Hiçbir şeyden korkmuyorum ve kendimi iyi hissediyorum.", "helper": "I am not afraid of anything and I feel good."},
+        {"n": 15, "target": "Bugün yürüyüş için harika bir gün oluyor.", "helper": "Today is turning into a wonderful day for a walk."}
+      ]
+    },
+    {
+      "title_target": "Fırında Kahvaltı",
+      "title_helper": "Breakfast at the Bakery",
+      "sentences": [
+        {"n": 16, "target": "Ben caddeden geçiyorum ve fırına giriyorum.", "helper": "I cross the avenue and enter the bakery."},
+        {"n": 17, "target": "İçeride taze ve sıcak ekmek kokusu var.", "helper": "Inside there is the smell of fresh and warm bread."},
+        {"n": 18, "target": "Fırıncı tezgâhın arkasında güler yüzle bekliyor.", "helper": "The baker waits with a smiling face behind the counter."},
+        {"n": 19, "target": "Ben bir ekmek ve iki simit alıyorum.", "helper": "I buy one loaf of bread and two simits."},
+        {"n": 20, "target": "Sonra köşedeki ahşap masaya oturuyorum.", "helper": "Then I sit at the wooden table in the corner."},
+        {"n": 21, "target": "Garson bana sıcak ve kokulu kahve getiriyor.", "helper": "The waiter brings me hot and fragrant coffee."},
+        {"n": 22, "target": "Tabakta beyaz peynir ve siyah zeytin var.", "helper": "There is white cheese and black olives on the plate."},
+        {"n": 23, "target": "Ben bu sade kahvaltıyı çok seviyorum.", "helper": "I love this simple breakfast very much."},
+        {"n": 24, "target": "Yan masada yaşlı bir adam gazete okuyor.", "helper": "At the next table an elderly man reads a newspaper."},
+        {"n": 25, "target": "Genç bir kadın ise menüden çay seçiyor.", "helper": "A young woman chooses tea from the menu."},
+        {"n": 26, "target": "Pencereden dışarıya ve geçen insanlara bakıyorum.", "helper": "I look out the window at the people passing by."},
+        {"n": 27, "target": "Sabah kahvesi bana her zaman enerji veriyor.", "helper": "Morning coffee always gives me energy."},
+        {"n": 28, "target": "Ben yavaşça kahvaltımı bitiriyorum ve kalkıyorum.", "helper": "I slowly finish my breakfast and stand up."},
+        {"n": 29, "target": "Fırıncıya teşekkür ediyorum ve dışarı çıkıyorum.", "helper": "I thank the baker and step outside."},
+        {"n": 30, "target": "Şimdi deniz kenarına doğru yürümeye devam ediyorum.", "helper": "Now I continue walking toward the seaside."}
+      ]
+    },
+    {
+      "title_target": "Deniz Kıyısı",
+      "title_helper": "By the Seaside",
+      "sentences": [
+        {"n": 31, "target": "On dakika sonra mavi denize ulaşıyorum.", "helper": "Ten minutes later I reach the blue sea."},
+        {"n": 32, "target": "Hafif bir rüzgar yüzüme tatlı tatlı esiyor.", "helper": "A gentle wind blows softly on my face."},
+        {"n": 33, "target": "Beyaz martılar gökyüzünde daireler çizerek uçuyor.", "helper": "White seagulls fly in circles in the sky."},
+        {"n": 34, "target": "Büyük bir vapur iskeleye doğru yavaşça yaklaşıyor.", "helper": "A large ferry slowly approaches the pier."},
+        {"n": 35, "target": "Yolcular güvertede duruyor ve manzarayı izliyor.", "helper": "Passengers stand on the deck and watch the view."},
+        {"n": 36, "target": "Su kenarında birkaç balıkçı sabırla bekliyor.", "helper": "Several fishermen wait patiently by the water."},
+        {"n": 37, "target": "Küçük dalgalar taşlara hafifçe vuruyor.", "helper": "Small waves gently hit the stones."},
+        {"n": 38, "target": "Ben sahildeki tahta banka biraz oturuyorum.", "helper": "I sit down for a while on a wooden bench on the shore."},
+        {"n": 39, "target": "Çantamdan ince ve ilginç kitabımı çıkarıyorum.", "helper": "I take my thin and interesting book out of my bag."},
+        {"n": 40, "target": "Bir süre sessizce birkaç sayfa okuyorum.", "helper": "For a while I quietly read a few pages."},
+        {"n": 41, "target": "Deniz havası insanın zihnini hemen açıyor.", "helper": "The sea air immediately clears one's mind."},
+        {"n": 42, "target": "İki çocuk sahilde renkli toplarla oynuyor.", "helper": "Two children play with colorful balls on the shore."},
+        {"n": 43, "target": "Neşeli bir köpek onların peşinden koşuyor.", "helper": "A cheerful dog runs after them."},
+        {"n": 44, "target": "Vapur iskeleden ayrılıyor ve uzaklaşıyor.", "helper": "The ferry leaves the pier and moves away."},
+        {"n": 45, "target": "Ben de ayağa kalkıyorum ve parka gidiyorum.", "helper": "I also stand up and go to the park."}
+      ]
+    },
+    {
+      "title_target": "Yeşil Park",
+      "title_helper": "The Green Park",
+      "sentences": [
+        {"n": 46, "target": "Büyük park bugün çok kalabalık ve canlı.", "helper": "The big park is very lively and bright today."},
+        {"n": 47, "target": "Yüksek ağaçlar yürüyüş yoluna serin gölge veriyor.", "helper": "Tall trees give cool shade to the walking path."},
+        {"n": 48, "target": "Yolun kenarında kırmızı ve sarı çiçekler var.", "helper": "There are red and yellow flowers along the path."},
+        {"n": 49, "target": "Bazı insanlar spor yapıyor ve hızlı koşuyor.", "helper": "Some people exercise and run fast."},
+        {"n": 50, "target": "Diğerleri ise ağaçların altında sessizce dinleniyor.", "helper": "Others rest quietly under the trees."},
+        {"n": 51, "target": "Bir genç dar yolda bisiklet sürüyor.", "helper": "A young person rides a bicycle on the narrow path."},
+        {"n": 52, "target": "Kuşlar dallarda yüksek sesle şarkı söylüyor.", "helper": "Birds sing loudly on the branches."},
+        {"n": 53, "target": "Ben yeşil çimenlerin yanında yavaşça yürüyorum.", "helper": "I walk slowly beside the green grass."},
+        {"n": 54, "target": "Her adımda doğanın güzelliğini daha çok görüyorum.", "helper": "With every step I see more of nature's beauty."},
+        {"n": 55, "target": "Bir aile büyük bir ağacın altında piknik yapıyor.", "helper": "A family is having a picnic under a large tree."},
+        {"n": 56, "target": "Onlar birbirine meyve ve soğuk su ikram ediyor.", "helper": "They offer each other fruit and cold water."},
+        {"n": 57, "target": "Parkın ortasında küçük ve temiz bir havuz var.", "helper": "In the middle of the park there is a small and clean pond."},
+        {"n": 58, "target": "Ördekler suyun üzerinde sakin sakin yüzüyor.", "helper": "Ducks swim calmly on the water."},
+        {"n": 59, "target": "Ben saatime bakıyorum ve zamanı kontrol ediyorum.", "helper": "I look at my watch and check the time."},
+        {"n": 60, "target": "Öğlen saatinde eski bir arkadaşım buraya geliyor.", "helper": "At noon an old friend of mine comes here."}
+      ]
+    },
+    {
+      "title_target": "Arkadaşla Sohbet",
+      "title_helper": "Chat with a Friend",
+      "sentences": [
+        {"n": 61, "target": "Arkadaşım uzaktan el sallıyor ve gülümsüyor.", "helper": "My friend waves from afar and smiles."},
+        {"n": 62, "target": "İkimiz de uzun süreden sonra çok seviniyoruz.", "helper": "Both of us are very happy after a long time."},
+        {"n": 63, "target": "Parkın içindeki küçük kafeye doğru yürüyoruz.", "helper": "We walk toward the small cafe inside the park."},
+        {"n": 64, "target": "Güneşli bahçede boş bir masa buluyoruz.", "helper": "We find an empty table in the sunny garden."},
+        {"n": 65, "target": "İkimiz de taze portakal suyu sipariş ediyoruz.", "helper": "We both order fresh orange juice."},
+        {"n": 66, "target": "İş ve günlük hayat hakkında uzun uzun konuşuyoruz.", "helper": "We talk at length about work and daily life."},
+        {"n": 67, "target": "Arkadaşım yeni bir kitap yazıyor ve anlatıyor.", "helper": "My friend is writing a new book and tells me about it."},
+        {"n": 68, "target": "Ben onu dikkatle dinliyorum ve sorular soruyorum.", "helper": "I listen to him carefully and ask questions."},
+        {"n": 69, "target": "Beraber eski güzel günleri neşeyle hatırlıyoruz.", "helper": "Together we happily remember the good old days."},
+        {"n": 70, "target": "Masamızın altına sevimli bir kedi geliyor.", "helper": "A cute cat comes under our table."},
+        {"n": 71, "target": "Kedi sessizce uyuyor ve güneşin tadını çıkarıyor.", "helper": "The cat sleeps quietly and enjoys the sun."},
+        {"n": 72, "target": "Zaman güzel sohbette çok hızlı geçiyor.", "helper": "Time passes very quickly in good conversation."},
+        {"n": 73, "target": "Artık ikimiz de eve dönmeye hazırlanıyoruz.", "helper": "Now both of us get ready to return home."},
+        {"n": 74, "target": "Birbirimize veda ediyoruz ve sarılıyoruz.", "helper": "We say goodbye to each other and hug."},
+        {"n": 75, "target": "Gelecek hafta tekrar buluşmaya karar veriyoruz.", "helper": "We decide to meet again next week."}
+      ]
+    },
+    {
+      "title_target": "Eve Dönüş",
+      "title_helper": "Returning Home",
+      "sentences": [
+        {"n": 76, "target": "Öğleden sonra sokaklar yine biraz sakinleşiyor.", "helper": "In the afternoon the streets become a little calmer again."},
+        {"n": 77, "target": "Ben aynı sokaktan yavaş adımlarla geri dönüyorum.", "helper": "I return with slow steps along the same street."},
+        {"n": 78, "target": "Manavdan akşam yemeği için taze sebze alıyorum.", "helper": "I buy fresh vegetables from the greengrocer for dinner."},
+        {"n": 79, "target": "Apartmanın merdivenlerini yorulmadan çıkıyorum.", "helper": "I climb the apartment stairs without getting tired."},
+        {"n": 80, "target": "Anahtarı çeviriyorum ve evin kapısını açıyorum.", "helper": "I turn the key and open the door of the house."},
+        {"n": 81, "target": "Çantamı ve paltomu hemen girişe bırakıyorum.", "helper": "I leave my bag and coat right at the entrance."},
+        {"n": 82, "target": "Mutfakta kendime bir bardak soğuk su dolduruyorum.", "helper": "In the kitchen I pour myself a glass of cold water."},
+        {"n": 83, "target": "Akşam ışığı odanın içine yumuşakça doluyor.", "helper": "The evening light fills the room softly."},
+        {"n": 84, "target": "Ben rahat koltuğa oturuyorum ve biraz dinleniyorum.", "helper": "I sit in the comfortable armchair and rest a little."},
+        {"n": 85, "target": "Bugünkü uzun yürüyüş bedenime çok iyi geliyor.", "helper": "Today's long walk feels very good for my body."},
+        {"n": 86, "target": "Şimdi sıcak bir akşam yemeği hazırlıyorum.", "helper": "Now I am preparing a warm dinner."},
+        {"n": 87, "target": "Dışarıda gökyüzü yavaş yavaş koyu mavi oluyor.", "helper": "Outside the sky slowly turns dark blue."},
+        {"n": 88, "target": "Evde huzurlu ve sessiz bir akşam başlıyor.", "helper": "A peaceful and quiet evening begins at home."},
+        {"n": 89, "target": "Ben yarınki yeni planlarımı deftere yazıyorum.", "helper": "I write my new plans for tomorrow in the notebook."},
+        {"n": 90, "target": "Çünkü insan böyle güzel bir gün yaşayınca gerçekten mutlu oluyor.", "helper": "Because when a person experiences such a lovely day, they truly become happy."}
+      ]
+    }
+  ],
+  "model": "fixture"
+}

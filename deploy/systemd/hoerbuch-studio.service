@@ -1,0 +1,24 @@
+[Unit]
+Description=Hoerbuch-Generator Web Studio
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=hoerbuch
+Group=hoerbuch
+WorkingDirectory=/opt/hoerbuch-generator
+EnvironmentFile=/opt/hoerbuch-generator/.env
+ExecStart=/opt/hoerbuch-generator/.venv/bin/python -I /opt/hoerbuch-generator/web.py --host 0.0.0.0 --port 7865 --no-browser
+Restart=always
+RestartSec=5
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=hoerbuch-studio
+
+# Basic process hardening
+NoNewPrivileges=true
+PrivateTmp=true
+
+[Install]
+WantedBy=multi-user.target
