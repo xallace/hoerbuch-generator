@@ -33,12 +33,12 @@ Turn any **YouTube video**, **web article**, **text file**, or **raw text** into
 
 ```mermaid
 flowchart LR
-    S["Input<br/>(YouTube / URL / File / Text)"] -->|1. source| SRC["source.json"]
-    SRC -->|2. script (Gemini SSE)| SCR["script.json"]
-    SCR -->|3. check (Rules + Proofreader LLM)| CHK["script.json + check.md"]
-    CHK -->|4. audio (edge-tts + ffmpeg)| MP3["&lt;slug&gt;.mp3 + cover.jpg + clips/"]
-    CHK -->|5. anki (genanki)| APKG["&lt;slug&gt;.apkg"]
-    CHK -->|6. readme| MD["README_AND_TRANSCRIPT_*.md"]
+    S["Input: YouTube, URL, File, or Text"] -->|"1. source"| SRC["source.json"]
+    SRC -->|"2. script: Gemini SSE"| SCR["script.json"]
+    SCR -->|"3. check: Rules + Proofreader LLM"| CHK["script.json + check.md"]
+    CHK -->|"4. audio: edge-tts + ffmpeg"| MP3["slug.mp3 + cover.jpg + clips/"]
+    CHK -->|"5. anki: genanki"| APKG["slug.apkg"]
+    CHK -->|"6. readme"| MD["README_AND_TRANSCRIPT_*.md"]
 ```
 
 1. **`source`** — Extracts full YouTube transcripts (`youtube-transcript-api`, falling back to `yt-dlp` subtitles) + video metadata via YouTube oEmbed, or cleans plain text from a webpage, local file, or direct text input.
